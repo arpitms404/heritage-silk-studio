@@ -61,6 +61,126 @@
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
+@theme {
+  --color-wine: oklch(0.238 0.093 12.5);
+  --color-bordeaux: oklch(0.343 0.135 12.9);
+  --color-gold: oklch(0.729 0.101 84.2);
+  --color-gold-light: oklch(0.865 0.069 88.5);
+  --color-ivory: oklch(0.955 0.024 90.6);
+  --color-ink: oklch(0.199 0.066 9.8);
+  --font-display: "Cormorant", serif;
+  --font-body: "Jost", sans-serif;
+}
+
+@keyframes unfurl {
+  from {
+    clip-path: inset(0 0 100% 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes panel-in {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(1.1em);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shimmer-sweep {
+  0% {
+    background-position: -180% 0;
+  }
+  100% {
+    background-position: 280% 0;
+  }
+}
+
+@keyframes silk-flow {
+  0% {
+    transform: translate3d(-25%, -10%, 0) rotate(8deg);
+  }
+  50% {
+    transform: translate3d(25%, 10%, 0) rotate(8deg);
+  }
+  100% {
+    transform: translate3d(-25%, -10%, 0) rotate(8deg);
+  }
+}
+
+@keyframes scroll-pulse {
+  0% {
+    transform: scaleY(0);
+    transform-origin: top;
+    opacity: 0;
+  }
+  40% {
+    transform: scaleY(1);
+    transform-origin: top;
+    opacity: 1;
+  }
+  70% {
+    transform: scaleY(1);
+    transform-origin: bottom;
+    opacity: 1;
+  }
+  100% {
+    transform: scaleY(0);
+    transform-origin: bottom;
+    opacity: 0;
+  }
+}
+
+@utility zari-strip {
+  background-image: repeating-linear-gradient(
+    90deg,
+    var(--color-gold) 0 2px,
+    transparent 2px 6px,
+    var(--color-gold-light) 6px 8px,
+    transparent 8px 14px
+  );
+}
+
+@utility text-shimmer {
+  background-image: linear-gradient(
+    100deg,
+    var(--color-gold) 0%,
+    var(--color-gold) 38%,
+    oklch(0.98 0.03 90) 50%,
+    var(--color-gold) 62%,
+    var(--color-gold) 100%
+  );
+  background-size: 220% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer-sweep 6s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
 :root {
   --radius: 0.625rem;
   --background: oklch(1 0 0);
