@@ -145,6 +145,15 @@
   }
 }
 
+@keyframes ticker {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
 @utility zari-strip {
   background-image: repeating-linear-gradient(
     90deg,
