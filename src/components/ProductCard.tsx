@@ -1,13 +1,14 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
+import { Link } from "@tanstack/react-router";
 import { inr, type Product } from "@/data/products";
 
 export function ProductCard({ product }: { product: Product }) {
-  const ref = useRef<HTMLDivElement>(null);
   const [tilt, setTilt] = useState("");
 
   return (
-    <div
-      ref={ref}
+    <Link
+      to="/product/$id"
+      params={{ id: product.id }}
       onMouseMove={(e) => {
         const r = e.currentTarget.getBoundingClientRect();
         const rx = ((e.clientY - r.top) / r.height - 0.5) * -6;
@@ -16,7 +17,7 @@ export function ProductCard({ product }: { product: Product }) {
       }}
       onMouseLeave={() => setTilt("")}
       style={{ transform: tilt, transition: "transform 600ms cubic-bezier(0.22,1,0.36,1)" }}
-      className="group relative"
+      className="group relative block outline-none focus-visible:ring-2 focus-visible:ring-gold"
     >
       <div className="relative overflow-hidden bg-ivory">
         <img
@@ -34,7 +35,6 @@ export function ProductCard({ product }: { product: Product }) {
           </span>
         ) : null}
 
-        {/* gold border draw-in */}
         <span className="pointer-events-none absolute inset-x-3 top-3 h-px origin-left scale-x-0 bg-gold transition-transform duration-700 group-hover:scale-x-100" />
         <span className="pointer-events-none absolute inset-x-3 bottom-3 h-px origin-right scale-x-0 bg-gold transition-transform duration-700 group-hover:scale-x-100" />
         <span className="pointer-events-none absolute inset-y-3 left-3 w-px origin-bottom scale-y-0 bg-gold transition-transform duration-700 group-hover:scale-y-100" />
@@ -49,6 +49,6 @@ export function ProductCard({ product }: { product: Product }) {
         <h3 className="font-display text-xl font-light text-ink">{product.name}</h3>
         <p className="mt-1 text-xs tracking-[0.2em] text-bordeaux">{inr(product.price)}</p>
       </div>
-    </div>
+    </Link>
   );
 }
